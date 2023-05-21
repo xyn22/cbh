@@ -1,9 +1,12 @@
 const crypto = require("crypto");
 
-const createSha3Hash = (data) =>  crypto.createHash("sha3-512").update(data).digest("hex");
+const createSha3Hash = (data) => crypto.createHash("sha3-512").update(data).digest("hex");
 
 const getCandidate = (event) => {
-  const {partitionKey} = event;
+  if (!event) {
+    return;
+  }
+  const { partitionKey } = event;
   if (partitionKey) {
     return typeof partitionKey !== "string" ? JSON.stringify(partitionKey) : partitionKey;
   }
