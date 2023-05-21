@@ -2,9 +2,9 @@ const crypto = require("crypto");
 
 const createSha3Hash = (data) => crypto.createHash("sha3-512").update(data).digest("hex");
 
-const getCandidate = (event) => {
+const getCandidate = (event, defaultCandidate) => {
   if (!event) {
-    return;
+    return defaultCandidate;
   }
 
   const { partitionKey } = event;
@@ -18,7 +18,7 @@ const getCandidate = (event) => {
 exports.deterministicPartitionKey = (event) => {
   const TRIVIAL_PARTITION_KEY = "0";
   const MAX_PARTITION_KEY_LENGTH = 256;
-  const candidate = getCandidate(event) || TRIVIAL_PARTITION_KEY;
+  const candidate = getCandidate(event, TRIVIAL_PARTITION_KEY);
   if (candidate.length > MAX_PARTITION_KEY_LENGTH) {
     return createSha3Hash(candidate);
   }
