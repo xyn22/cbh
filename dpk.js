@@ -6,6 +6,7 @@ const getCandidate = (event) => {
   if (!event) {
     return;
   }
+
   const { partitionKey } = event;
   if (partitionKey) {
     return typeof partitionKey !== "string" ? JSON.stringify(partitionKey) : partitionKey;
@@ -23,3 +24,5 @@ exports.deterministicPartitionKey = (event) => {
   }
   return candidate;
 };
+
+exports.createSha3Hash = createSha3Hash;
