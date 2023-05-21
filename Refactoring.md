@@ -12,3 +12,6 @@ You will be graded on the exhaustiveness and quality of your unit tests, the dep
 Two reasons for the refactoring:
 1. The original fuction had too may if statements, some were nested. This makes it hard to read quickly as reader would need to keep track of the logic. Usually long functions are a potential room for refactoring.
 2. Testing coverage percentage was too low. It did not cover all possible edge-cases. That was due to the compact code. Separating the code into different callables (functions) made it easy to provide comprehensive unit testing.
+3. I decided not to modify the code in a way that matches modern coding standards. I would discuss the below with peers:
+> 1. Replacing double quotes with single quotes for strings
+> 2. Use ES module instead of commonJs
